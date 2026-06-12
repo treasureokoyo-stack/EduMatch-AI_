@@ -1501,6 +1501,22 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+
+        /* Onboarding Steps */
+        .onboarding-step {
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
@@ -1589,8 +1605,20 @@
 
                 <div class="login-form-wrapper">
                     <div class="login-form">
-                        <h2>Admin Portal</h2>
-                        <p>Sign in to your intelligence dashboard</p>
+                        <!-- Role Selection Tabs -->
+                        <div style="display: flex; background: var(--surface-container-high); border-radius: 8px; padding: 4px; margin-bottom: 32px; gap: 4px;">
+                            <button id="tab-student" onclick="switchUserRole('student')" style="flex: 1; padding: 10px 16px; border-radius: 6px; background: transparent; font-size: 14px; font-weight: 600; color: var(--on-surface-variant); border: none; cursor: pointer; transition: all 0.2s ease;">
+                                <span class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle; margin-right: 4px;">school</span>
+                                Student
+                            </button>
+                            <button id="tab-admin" onclick="switchUserRole('admin')" style="flex: 1; padding: 10px 16px; border-radius: 6px; background: white; font-size: 14px; font-weight: 600; color: var(--primary); border: none; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: all 0.2s ease;">
+                                <span class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle; margin-right: 4px;">admin_panel_settings</span>
+                                Admin
+                            </button>
+                        </div>
+
+                        <h2 id="loginTitle">Admin Portal</h2>
+                        <p id="loginSubtitle">Sign in to your intelligence dashboard</p>
 
                         <div id="errorBanner" class="error-banner">
                             <span class="material-symbols-outlined">error</span>
@@ -1620,7 +1648,7 @@
                             <label for="remember">Remember me</label>
                         </div>
 
-                        <button class="btn-primary" onclick="navigateToDashboard()">Sign In</button>
+                        <button class="btn-primary" onclick="handleLogin()">Sign In</button>
 
                         <div class="login-links">
                             <a href="#" onclick="toggleErrorState(event)">Forgot password?</a> | 
@@ -1631,7 +1659,91 @@
             </div>
         </div>
 
-        <!-- LEARNING DASHBOARD SCREEN -->
+        <!-- STUDENT ONBOARDING SCREEN -->
+        <div id="screen-student-onboarding" class="screen">
+            <div style="min-height: 100vh; background: linear-gradient(135deg, var(--lavender-light) 0%, var(--surface-off-white) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px;">
+                <div style="max-width: 600px; width: 100%; background: white; border-radius: 24px; padding: 48px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); text-align: center;">
+                    <div style="margin-bottom: 32px;">
+                        <h2 class="headline-lg" style="margin-bottom: 12px;">Welcome to EduMatch AI</h2>
+                        <p style="color: var(--on-surface-variant); font-size: 16px;">Let's find your perfect program match</p>
+                    </div>
+
+                    <div id="step-1" class="onboarding-step">
+                        <div style="font-size: 64px; margin-bottom: 24px; color: var(--secondary);">🎯</div>
+                        <h3 style="font-size: 24px; font-weight: 300; margin-bottom: 16px;">What are your interests?</h3>
+                        <p style="color: var(--on-surface-variant); margin-bottom: 24px;">Select all that apply to help us understand your goals.</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 32px;">
+                            <button onclick="selectInterest(this)" style="padding: 12px; border: 2px solid var(--outline-variant); border-radius: 8px; background: white; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; color: var(--on-surface);">Technology</button>
+                            <button onclick="selectInterest(this)" style="padding: 12px; border: 2px solid var(--outline-variant); border-radius: 8px; background: white; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; color: var(--on-surface);">Business</button>
+                            <button onclick="selectInterest(this)" style="padding: 12px; border: 2px solid var(--outline-variant); border-radius: 8px; background: white; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; color: var(--on-surface);">Creative</button>
+                            <button onclick="selectInterest(this)" style="padding: 12px; border: 2px solid var(--outline-variant); border-radius: 8px; background: white; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; color: var(--on-surface);">Data</button>
+                            <button onclick="selectInterest(this)" style="padding: 12px; border: 2px solid var(--outline-variant); border-radius: 8px; background: white; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; color: var(--on-surface);">Marketing</button>
+                            <button onclick="selectInterest(this)" style="padding: 12px; border: 2px solid var(--outline-variant); border-radius: 8px; background: white; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; color: var(--on-surface);">Leadership</button>
+                        </div>
+
+                        <button class="btn-primary" style="width: 100%;" onclick="nextStep()">Next</button>
+                    </div>
+
+                    <div id="step-2" class="onboarding-step" style="display: none;">
+                        <div style="font-size: 64px; margin-bottom: 24px;">💼</div>
+                        <h3 style="font-size: 24px; font-weight: 300; margin-bottom: 16px;">Experience Level</h3>
+                        <p style="color: var(--on-surface-variant); margin-bottom: 24px;">Where are you in your learning journey?</p>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;">
+                            <button onclick="selectExperience(this)" style="padding: 16px; border: 2px solid var(--outline-variant); border-radius: 8px; background: white; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; color: var(--on-surface); text-align: left;">
+                                <div style="font-weight: 600;">Beginner</div>
+                                <div style="font-size: 12px; color: var(--on-surface-variant);">Just starting out</div>
+                            </button>
+                            <button onclick="selectExperience(this)" style="padding: 16px; border: 2px solid var(--outline-variant); border-radius: 8px; background: white; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; color: var(--on-surface); text-align: left;">
+                                <div style="font-weight: 600;">Intermediate</div>
+                                <div style="font-size: 12px; color: var(--on-surface-variant);">Some experience</div>
+                            </button>
+                            <button onclick="selectExperience(this)" style="padding: 16px; border: 2px solid var(--outline-variant); border-radius: 8px; background: white; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; color: var(--on-surface); text-align: left;">
+                                <div style="font-weight: 600;">Advanced</div>
+                                <div style="font-size: 12px; color: var(--on-surface-variant);">Ready for expert content</div>
+                            </button>
+                        </div>
+
+                        <div style="display: flex; gap: 12px;">
+                            <button class="btn-secondary" style="flex: 1;" onclick="previousStep()">Back</button>
+                            <button class="btn-primary" style="flex: 1;" onclick="nextStep()">Next</button>
+                        </div>
+                    </div>
+
+                    <div id="step-3" class="onboarding-step" style="display: none;">
+                        <div style="font-size: 64px; margin-bottom: 24px;">🚀</div>
+                        <h3 style="font-size: 24px; font-weight: 300; margin-bottom: 16px;">Your Recommendations</h3>
+                        <p style="color: var(--on-surface-variant); margin-bottom: 24px;">Based on your profile, we found perfect matches for you!</p>
+                        
+                        <div style="background: var(--lavender-light); border-radius: 12px; padding: 20px; margin-bottom: 24px; text-align: left;">
+                            <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+                                <div style="font-size: 32px;">✨</div>
+                                <div>
+                                    <div style="font-weight: 600; color: var(--on-surface);">AI Automation</div>
+                                    <div style="font-size: 13px; color: var(--on-surface-variant);">Perfect match for your interests • 12 weeks</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: var(--surface-container); border-radius: 12px; padding: 20px; margin-bottom: 24px; text-align: left;">
+                            <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+                                <div style="font-size: 32px;">💻</div>
+                                <div>
+                                    <div style="font-weight: 600; color: var(--on-surface);">AI Software & Web Dev</div>
+                                    <div style="font-size: 13px; color: var(--on-surface-variant);">Great for tech enthusiasts • 16 weeks</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 12px;">
+                            <button class="btn-secondary" style="flex: 1;" onclick="previousStep()">Back</button>
+                            <button class="btn-primary" style="flex: 1;" onclick="completeOnboarding()">Explore Programs</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="screen-dashboard" class="screen">
             <div class="dashboard-header">
                 <div class="dashboard-title-section">
@@ -2664,11 +2776,26 @@
 
     <script>
         let currentScreen = 'login';
+        let userRole = 'admin'; // 'admin' or 'student'
+        let currentStep = 1;
+        let studentProfile = {};
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             updateDate();
+            initializeLoginTabs();
         });
+
+        // Initialize login tabs
+        function initializeLoginTabs() {
+            const adminTab = document.getElementById('tab-admin');
+            const studentTab = document.getElementById('tab-student');
+            
+            if (adminTab) adminTab.style.background = 'white';
+            if (adminTab) adminTab.style.color = 'var(--primary)';
+            if (studentTab) studentTab.style.background = 'transparent';
+            if (studentTab) studentTab.style.color = 'var(--on-surface-variant)';
+        }
 
         // Update date display
         function updateDate() {
@@ -2677,6 +2804,47 @@
             const dateElement = document.getElementById('todayDate');
             if (dateElement) {
                 dateElement.textContent = today;
+            }
+        }
+
+        // Switch user role (Admin/Student)
+        function switchUserRole(role) {
+            userRole = role;
+            
+            const adminTab = document.getElementById('tab-admin');
+            const studentTab = document.getElementById('tab-student');
+            const loginTitle = document.getElementById('loginTitle');
+            const loginSubtitle = document.getElementById('loginSubtitle');
+
+            if (role === 'admin') {
+                adminTab.style.background = 'white';
+                adminTab.style.color = 'var(--primary)';
+                adminTab.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
+                studentTab.style.background = 'transparent';
+                studentTab.style.color = 'var(--on-surface-variant)';
+                studentTab.style.boxShadow = 'none';
+                
+                loginTitle.textContent = 'Admin Portal';
+                loginSubtitle.textContent = 'Sign in to your intelligence dashboard';
+            } else {
+                studentTab.style.background = 'white';
+                studentTab.style.color = 'var(--primary)';
+                studentTab.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
+                adminTab.style.background = 'transparent';
+                adminTab.style.color = 'var(--on-surface-variant)';
+                adminTab.style.boxShadow = 'none';
+                
+                loginTitle.textContent = 'Find Your Match';
+                loginSubtitle.textContent = 'Discover programs tailored to your goals';
+            }
+        }
+
+        // Handle login
+        function handleLogin() {
+            if (userRole === 'admin') {
+                navigateToDashboard();
+            } else {
+                navigateToStudentOnboarding();
             }
         }
 
@@ -2697,7 +2865,10 @@
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
-            document.querySelector(`[data-screen="${screenName}"]`).classList.add('active');
+            const activeLink = document.querySelector(`[data-screen="${screenName}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
 
             // Close mobile sidebar
             closeMobileSidebar();
@@ -2705,6 +2876,62 @@
 
         // Navigate to dashboard from login
         function navigateToDashboard() {
+            switchScreen('dashboard', null);
+        }
+
+        // Navigate to student onboarding
+        function navigateToStudentOnboarding() {
+            currentStep = 1;
+            switchScreen('student-onboarding', null);
+            showStep(1);
+        }
+
+        // Show specific step
+        function showStep(step) {
+            for (let i = 1; i <= 3; i++) {
+                const stepEl = document.getElementById('step-' + i);
+                if (stepEl) {
+                    stepEl.style.display = i === step ? 'block' : 'none';
+                }
+            }
+            currentStep = step;
+        }
+
+        // Next step in onboarding
+        function nextStep() {
+            if (currentStep < 3) {
+                showStep(currentStep + 1);
+            }
+        }
+
+        // Previous step in onboarding
+        function previousStep() {
+            if (currentStep > 1) {
+                showStep(currentStep - 1);
+            }
+        }
+
+        // Select interest
+        function selectInterest(button) {
+            button.style.borderColor = button.style.borderColor === 'rgb(97, 62, 211)' ? 'var(--outline-variant)' : 'var(--secondary)';
+            button.style.background = button.style.background === 'rgb(243, 232, 255)' ? 'white' : 'var(--lavender-light)';
+            button.style.color = button.style.color === 'rgb(30, 0, 96)' ? 'var(--on-surface)' : 'var(--secondary)';
+            button.style.fontWeight = button.style.fontWeight === '600' ? '500' : '600';
+        }
+
+        // Select experience
+        function selectExperience(button) {
+            document.querySelectorAll('[onclick="selectExperience(this)"]').forEach(btn => {
+                btn.style.borderColor = 'var(--outline-variant)';
+                btn.style.background = 'white';
+            });
+            button.style.borderColor = 'var(--secondary)';
+            button.style.background = 'var(--lavender-light)';
+        }
+
+        // Complete onboarding
+        function completeOnboarding() {
+            // Show a student-facing dashboard or redirect to programs
             switchScreen('dashboard', null);
         }
 
