@@ -1,0 +1,2786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduMatch AI Intelligence Suite - Admin Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --surface: #fcf8fa;
+            --surface-dim: #dcd9db;
+            --surface-bright: #fcf8fa;
+            --surface-container-lowest: #ffffff;
+            --surface-container-low: #f6f3f5;
+            --surface-container: #f0edef;
+            --surface-container-high: #eae7e9;
+            --surface-container-highest: #e4e2e4;
+            --on-surface: #1b1b1d;
+            --on-surface-variant: #45464d;
+            --inverse-surface: #303032;
+            --inverse-on-surface: #f3f0f2;
+            --outline: #76777d;
+            --outline-variant: #c6c6cd;
+            --surface-tint: #565e74;
+            --primary: #000000;
+            --on-primary: #ffffff;
+            --primary-container: #131b2e;
+            --on-primary-container: #7c839b;
+            --inverse-primary: #bec6e0;
+            --secondary: #613ed3;
+            --on-secondary: #ffffff;
+            --secondary-container: #7b5aed;
+            --on-secondary-container: #fffbff;
+            --tertiary: #000000;
+            --on-tertiary: #ffffff;
+            --tertiary-container: #271901;
+            --on-tertiary-container: #98805d;
+            --error: #ba1a1a;
+            --on-error: #ffffff;
+            --error-container: #ffdad6;
+            --on-error-container: #93000a;
+            --primary-fixed: #dae2fd;
+            --primary-fixed-dim: #bec6e0;
+            --on-primary-fixed: #131b2e;
+            --on-primary-fixed-variant: #3f465c;
+            --secondary-fixed: #e7deff;
+            --secondary-fixed-dim: #ccbeff;
+            --on-secondary-fixed: #1e0060;
+            --on-secondary-fixed-variant: #4c20bd;
+            --tertiary-fixed: #fcdeb5;
+            --tertiary-fixed-dim: #dec29a;
+            --on-tertiary-fixed: #271901;
+            --on-tertiary-fixed-variant: #574425;
+            --background: #fcf8fa;
+            --on-background: #1b1b1d;
+            --surface-variant: #e4e2e4;
+            --lavender-light: #F3E8FF;
+            --deep-blue-accent: #1E293B;
+            --surface-off-white: #FBF7FD;
+            --gradient-start: #6742FA;
+            --gradient-end: #8B6BFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background);
+            color: var(--on-background);
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        .headline-xl {
+            font-size: 48px;
+            font-weight: 200;
+            line-height: 56px;
+            letter-spacing: -0.02em;
+        }
+
+        .headline-lg {
+            font-size: 32px;
+            font-weight: 200;
+            line-height: 40px;
+            letter-spacing: -0.01em;
+        }
+
+        .headline-md {
+            font-size: 24px;
+            font-weight: 300;
+            line-height: 32px;
+        }
+
+        .body-lg {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 28px;
+        }
+
+        .body-md {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+        }
+
+        .label-md {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 20px;
+            letter-spacing: 0.02em;
+        }
+
+        @media (max-width: 768px) {
+            .headline-xl {
+                font-size: 32px;
+                font-weight: 200;
+                line-height: 40px;
+            }
+
+            .headline-lg {
+                font-size: 24px;
+                font-weight: 200;
+                line-height: 32px;
+            }
+        }
+
+        /* Buttons */
+        button {
+            font-family: 'Manrope', sans-serif;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            color: var(--on-secondary);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(103, 66, 250, 0.35);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 24px rgba(103, 66, 250, 0.45);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--deep-blue-accent);
+            padding: 12px 24px;
+            border: 2px solid var(--deep-blue-accent);
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(30, 41, 59, 0.05);
+        }
+
+        .btn-icon {
+            background: transparent;
+            color: var(--on-surface-variant);
+            padding: 8px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-icon:hover {
+            background: var(--surface-container);
+        }
+
+        /* Inputs */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        select,
+        textarea {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--surface-off-white);
+            border: none;
+            border-bottom: 2px solid var(--outline-variant);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            color: var(--on-surface);
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder,
+        input[type="password"]::placeholder,
+        textarea::placeholder {
+            color: var(--on-surface-variant);
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-bottom-color: var(--secondary);
+            box-shadow: 0 4px 12px rgba(123, 90, 237, 0.15);
+        }
+
+        input[type="text"].error,
+        input[type="email"].error,
+        input[type="password"].error {
+            border-bottom-color: var(--error);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--surface-container-lowest);
+            border: 1px solid var(--outline-variant);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 4px 24px rgba(30, 41, 59, 0.06);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        /* Sidebar */
+        #sidebar {
+            width: 256px;
+            background-color: var(--primary-container);
+            color: var(--on-primary-container);
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 24px 0;
+            z-index: 1000;
+            box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 0 24px;
+            margin-bottom: 32px;
+        }
+
+        .sidebar-header h1 {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--on-secondary);
+            margin-bottom: 4px;
+        }
+
+        .sidebar-header p {
+            font-size: 12px;
+            color: var(--on-primary-container);
+        }
+
+        .sidebar-cta {
+            padding: 0 16px;
+            margin-bottom: 32px;
+        }
+
+        .sidebar-cta .btn-primary {
+            width: 100%;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 8px;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            margin: 4px 0;
+            border-radius: 12px;
+            color: var(--on-primary-container);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav a:hover {
+            background: rgba(123, 90, 237, 0.15);
+            color: var(--on-secondary);
+        }
+
+        .sidebar-nav a.active {
+            background: var(--secondary);
+            color: var(--on-secondary);
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(97, 62, 211, 0.3);
+        }
+
+        .sidebar-footer {
+            padding: 16px 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: auto;
+        }
+
+        .sidebar-footer a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: var(--on-primary-container);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-footer a:hover {
+            background: rgba(123, 90, 237, 0.15);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24px;
+        }
+
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24px;
+        }
+
+        /* Main Content */
+        #main-content {
+            flex: 1;
+            margin-left: 256px;
+            background-color: var(--surface-off-white);
+            min-height: 100vh;
+            transition: margin-left 0.3s ease;
+        }
+
+        #main-content.mobile-nav-open {
+            margin-left: 0;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            #sidebar {
+                transform: translateX(-100%);
+            }
+
+            #sidebar.mobile-visible {
+                transform: translateX(0);
+            }
+
+            #main-content {
+                margin-left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .desktop-only {
+                display: none;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        /* Screens */
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Login Screen */
+        .login-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 100vh;
+            background: var(--background);
+        }
+
+        .login-brand {
+            background: linear-gradient(135deg, var(--primary-container), #1a2a3a);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+            color: var(--on-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-brand::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(139, 107, 255, 0.2), transparent);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .login-brand-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .login-brand h1 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .login-brand p {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 48px;
+            opacity: 0.9;
+        }
+
+        .login-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            width: 100%;
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .login-stat {
+            text-align: center;
+        }
+
+        .login-stat-value {
+            font-size: 24px;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .login-stat-label {
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        .login-form-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+            background: var(--surface-container-lowest);
+        }
+
+        .login-form {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-form h2 {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 8px;
+            color: var(--on-surface);
+        }
+
+        .login-form p {
+            font-size: 14px;
+            color: var(--on-surface-variant);
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--on-surface);
+        }
+
+        .form-group input {
+            width: 100%;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--on-surface-variant);
+            padding: 4px;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--secondary);
+        }
+
+        .checkbox-group label {
+            font-size: 14px;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .login-form .btn-primary {
+            width: 100%;
+            padding: 14px 24px;
+        }
+
+        .login-links {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .login-links a {
+            font-size: 14px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-links a:hover {
+            text-decoration: underline;
+        }
+
+        .error-banner {
+            background: var(--error-container);
+            border: 1px solid var(--error);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            display: none;
+        }
+
+        .error-banner.show {
+            display: flex;
+        }
+
+        .error-banner .material-symbols-outlined {
+            color: var(--error);
+            flex-shrink: 0;
+        }
+
+        .error-banner-content {
+            color: var(--on-error-container);
+        }
+
+        .error-banner-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        /* Dashboard Screen */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 32px;
+            padding: 24px;
+        }
+
+        .dashboard-title-section h2 {
+            font-size: 48px;
+            font-weight: 200;
+            margin-bottom: 8px;
+        }
+
+        .dashboard-title-section p {
+            font-size: 14px;
+            color: var(--on-surface-variant);
+        }
+
+        .dashboard-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .dashboard-content {
+            padding: 0 24px 32px 24px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .kpi-card {
+            background: var(--surface-container-lowest);
+            border: 1px solid var(--outline-variant);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .kpi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .kpi-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--on-secondary);
+        }
+
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--on-surface);
+        }
+
+        .kpi-label {
+            font-size: 12px;
+            color: var(--on-surface-variant);
+        }
+
+        .kpi-change {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .kpi-change.positive {
+            color: #22c55e;
+        }
+
+        .kpi-change.negative {
+            color: var(--error);
+        }
+
+        .content-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .content-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .ai-insights {
+            background: var(--surface-container-lowest);
+            border: 1px solid var(--outline-variant);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .ai-insights-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .ai-insights-header .material-symbols-outlined {
+            color: var(--secondary);
+        }
+
+        .insight-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--surface-variant);
+        }
+
+        .insight-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .insight-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--lavender-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--secondary);
+            font-size: 16px;
+        }
+
+        .insight-content {
+            flex: 1;
+        }
+
+        .insight-content p {
+            font-size: 14px;
+            color: var(--on-surface);
+            margin-bottom: 4px;
+        }
+
+        .insight-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--secondary);
+            text-transform: uppercase;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 300px;
+            margin-top: 16px;
+            position: relative;
+        }
+
+        .alerts-panel {
+            background: var(--surface-container-lowest);
+            border: 1px solid var(--outline-variant);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .alert-card {
+            padding: 12px;
+            border-radius: 8px;
+            background: var(--surface-container);
+            border-left: 4px solid var(--outline-variant);
+            display: flex;
+            gap: 12px;
+        }
+
+        .alert-card.error {
+            border-left-color: var(--error);
+            background: var(--error-container);
+        }
+
+        .alert-card.warning {
+            border-left-color: #f59e0b;
+            background: #fef3c7;
+        }
+
+        .alert-card.success {
+            border-left-color: #22c55e;
+            background: #dcfce7;
+        }
+
+        .alert-content p {
+            font-size: 13px;
+            margin-bottom: 2px;
+            color: var(--on-surface);
+        }
+
+        .alert-time {
+            font-size: 11px;
+            color: var(--on-surface-variant);
+        }
+
+        /* Table */
+        .table-container {
+            background: var(--surface-container-lowest);
+            border: 1px solid var(--outline-variant);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        thead {
+            background: var(--surface-container);
+            border-bottom: 1px solid var(--outline-variant);
+        }
+
+        th {
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--on-surface-variant);
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--outline-variant);
+            color: var(--on-surface);
+        }
+
+        tbody tr:hover {
+            background: var(--surface-container-low);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status-chip {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            width: fit-content;
+        }
+
+        .status-chip.enrolled {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-chip.review {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-chip.waitlisted {
+            background: var(--secondary-fixed);
+            color: var(--on-secondary-fixed);
+        }
+
+        .status-chip.rejected {
+            background: var(--error-container);
+            color: var(--on-error-container);
+        }
+
+        .score-badge {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .score-badge.high {
+            background: #22c55e;
+        }
+
+        .score-badge.medium {
+            background: #f59e0b;
+        }
+
+        .score-badge.low {
+            background: var(--error);
+        }
+
+        /* Program Cards Grid */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .program-card {
+            background: var(--surface-container-lowest);
+            border: 1px solid var(--outline-variant);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .program-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .program-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--lavender-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--secondary);
+        }
+
+        .program-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--on-surface);
+        }
+
+        .program-tags {
+            display: flex;
+            gap: 8px;
+        }
+
+        .tag {
+            background: var(--surface-container);
+            color: var(--on-surface-variant);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .progress-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--on-surface-variant);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--surface-container);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            border-radius: 4px;
+        }
+
+        .program-status {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .program-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+            padding-top: 16px;
+            border-top: 1px solid var(--outline-variant);
+        }
+
+        .program-actions a {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--secondary);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .program-actions button {
+            flex: 1;
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+
+        /* Analytics */
+        .analytics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding: 24px;
+        }
+
+        .date-range-selector {
+            display: flex;
+            gap: 8px;
+            background: var(--surface-container);
+            padding: 4px;
+            border-radius: 8px;
+        }
+
+        .date-range-selector button {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--on-surface-variant);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .date-range-selector button.active {
+            background: var(--surface-container-lowest);
+            color: var(--secondary);
+            box-shadow: 0 2px 8px rgba(97, 62, 211, 0.2);
+        }
+
+        .export-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: transparent;
+            border: 1px solid var(--outline-variant);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--on-surface);
+            cursor: pointer;
+        }
+
+        .export-btn:hover {
+            background: var(--surface-container-low);
+        }
+
+        /* Settings */
+        .settings-content {
+            padding: 24px;
+        }
+
+        .settings-header {
+            margin-bottom: 32px;
+        }
+
+        .settings-header h2 {
+            font-size: 32px;
+            font-weight: 200;
+            margin-bottom: 8px;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .settings-section {
+            background: var(--surface-container-lowest);
+            border: 1px solid var(--outline-variant);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .settings-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--on-surface);
+        }
+
+        .form-field {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-field label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--on-surface);
+        }
+
+        .form-field input,
+        .form-field select {
+            width: 100%;
+        }
+
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+        }
+
+        .switch {
+            position: relative;
+            width: 48px;
+            height: 24px;
+            background: var(--surface-container);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .switch.on {
+            background: var(--secondary);
+        }
+
+        .switch::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: left 0.2s ease;
+        }
+
+        .switch.on::after {
+            left: 26px;
+        }
+
+        .toggle-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--on-surface);
+        }
+
+        /* Lead Tracker */
+        .lead-tracker-layout {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 24px;
+            padding: 24px;
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            padding: 8px 16px;
+            border: 1px solid var(--outline-variant);
+            border-radius: 16px;
+            background: transparent;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--on-surface-variant);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-chip.active {
+            background: var(--secondary);
+            color: var(--on-secondary);
+            border-color: var(--secondary);
+        }
+
+        .live-feed {
+            background: var(--surface-container-lowest);
+            border: 1px solid var(--outline-variant);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .live-feed-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--outline-variant);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .feed-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            background: var(--surface-container-low);
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .feed-item::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 32px;
+            width: 2px;
+            height: calc(100% + 12px);
+            background: var(--outline-variant);
+        }
+
+        .feed-item:last-child::before {
+            display: none;
+        }
+
+        .feed-icon {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            z-index: 1;
+        }
+
+        .feed-content {
+            flex: 1;
+        }
+
+        .feed-text {
+            font-size: 13px;
+            color: var(--on-surface);
+            margin-bottom: 4px;
+        }
+
+        .feed-time {
+            font-size: 11px;
+            color: var(--on-surface-variant);
+        }
+
+        .feed-match {
+            display: inline-block;
+            background: var(--lavender-light);
+            color: var(--secondary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* Integrations */
+        .integrations-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .integration-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .integration-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto;
+            border-radius: 12px;
+            background: var(--lavender-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--secondary);
+        }
+
+        .integration-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--on-surface);
+        }
+
+        .integration-status {
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .integration-status.connected {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .integration-status.disconnected {
+            background: var(--surface-container);
+            color: var(--on-surface-variant);
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--surface-container-lowest);
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .modal-header h3 {
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--on-surface);
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--on-surface-variant);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .login-container {
+                grid-template-columns: 1fr;
+            }
+
+            .login-brand {
+                display: none;
+            }
+
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .content-row {
+                grid-template-columns: 1fr;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .integrations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lead-tracker-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .login-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .programs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .integrations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h1>EduMatch AI</h1>
+            <p>Intelligence Suite</p>
+        </div>
+
+        <div class="sidebar-cta">
+            <button class="btn-primary">
+                <span class="material-symbols-outlined">add</span>
+                New Application
+            </button>
+        </div>
+
+        <div class="sidebar-nav">
+            <a href="#" onclick="switchScreen('dashboard', event)" class="nav-link active" data-screen="dashboard">
+                <span class="material-symbols-outlined">dashboard</span>
+                Learning Dashboard
+            </a>
+            <a href="#" onclick="switchScreen('analytics', event)" class="nav-link" data-screen="analytics">
+                <span class="material-symbols-outlined">analytics</span>
+                Analytics
+            </a>
+            <a href="#" onclick="switchScreen('leads', event)" class="nav-link" data-screen="leads">
+                <span class="material-symbols-outlined">description</span>
+                Lead & Event Tracker
+            </a>
+            <a href="#" onclick="switchScreen('programs', event)" class="nav-link" data-screen="programs">
+                <span class="material-symbols-outlined">school</span>
+                Program Management
+            </a>
+            <a href="#" onclick="switchScreen('settings', event)" class="nav-link" data-screen="settings">
+                <span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            <a href="#" onclick="showScreen('help', event)">
+                <span class="material-symbols-outlined">help</span>
+                Help
+            </a>
+            <a href="#" onclick="switchScreen('login', event)">
+                <span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+        <!-- Mobile Menu Toggle -->
+        <div class="mobile-menu-btn" style="display: none; align-items: center; justify-content: space-between; padding: 16px; background: var(--surface-container-lowest); border-bottom: 1px solid var(--outline-variant);">
+            <span class="headline-md">EduMatch AI</span>
+            <button class="btn-icon" onclick="toggleMobileSidebar()">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+
+        <!-- LOGIN SCREEN -->
+        <div id="screen-login" class="screen active">
+            <div class="login-container">
+                <div class="login-brand">
+                    <div class="login-brand-content">
+                        <h1>EduMatch AI</h1>
+                        <p>Decision Intelligence for Education</p>
+                        <div class="login-stats">
+                            <div class="login-stat">
+                                <span class="login-stat-value">2,400+</span>
+                                <span class="login-stat-label">Students</span>
+                            </div>
+                            <div class="login-stat">
+                                <span class="login-stat-value">98%</span>
+                                <span class="login-stat-label">Match Rate</span>
+                            </div>
+                            <div class="login-stat">
+                                <span class="login-stat-value">47</span>
+                                <span class="login-stat-label">Institutions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="login-form-wrapper">
+                    <div class="login-form">
+                        <h2>Admin Portal</h2>
+                        <p>Sign in to your intelligence dashboard</p>
+
+                        <div id="errorBanner" class="error-banner">
+                            <span class="material-symbols-outlined">error</span>
+                            <div class="error-banner-content">
+                                <div class="error-banner-title">Invalid credentials</div>
+                                <div>Invalid email or password. Please try again.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" id="email" placeholder="your@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="password" placeholder="••••••••">
+                                <button class="password-toggle" onclick="togglePasswordVisibility()">
+                                    <span class="material-symbols-outlined">visibility</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+
+                        <button class="btn-primary" onclick="navigateToDashboard()">Sign In</button>
+
+                        <div class="login-links">
+                            <a href="#" onclick="toggleErrorState(event)">Forgot password?</a> | 
+                            <a href="#" onclick="toggleErrorState(event)">Show Error State</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEARNING DASHBOARD SCREEN -->
+        <div id="screen-dashboard" class="screen">
+            <div class="dashboard-header">
+                <div class="dashboard-title-section">
+                    <h2>Learning Dashboard</h2>
+                    <p id="todayDate">Monday, June 12, 2026</p>
+                </div>
+                <div class="dashboard-actions">
+                    <button class="btn-icon">
+                        <span class="material-symbols-outlined">notifications</span>
+                    </button>
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--secondary); margin-left: 8px;"></div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <!-- KPI Cards -->
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="label-md">Total Enrolled</span>
+                            <div class="kpi-icon" style="background: var(--lavender-light); color: var(--secondary);">
+                                <span class="material-symbols-outlined">groups</span>
+                            </div>
+                        </div>
+                        <div class="kpi-value">2,847</div>
+                        <div class="kpi-change positive">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">trending_up</span>
+                            <span>+12.5% from last month</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="label-md">Monthly Revenue</span>
+                            <div class="kpi-icon" style="background: var(--secondary-fixed); color: var(--on-secondary-fixed);">
+                                <span class="material-symbols-outlined">payments</span>
+                            </div>
+                        </div>
+                        <div class="kpi-value">₦4.2M</div>
+                        <div class="kpi-change positive">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">trending_up</span>
+                            <span>+8.3% from last month</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="label-md">Completion Rate</span>
+                            <div class="kpi-icon" style="background: var(--primary-fixed); color: var(--on-primary-fixed);">
+                                <span class="material-symbols-outlined">local_fire_department</span>
+                            </div>
+                        </div>
+                        <div class="kpi-value">76%</div>
+                        <div class="kpi-change positive">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">trending_up</span>
+                            <span>+3.2% from last month</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="label-md">Pending Apps</span>
+                            <div class="kpi-icon" style="background: var(--error-container); color: var(--error);">
+                                <span class="material-symbols-outlined">warning</span>
+                            </div>
+                        </div>
+                        <div class="kpi-value">134</div>
+                        <div class="kpi-change negative">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">trending_up</span>
+                            <span>+5.1% from last month</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Insights & Alerts Row -->
+                <div class="content-row">
+                    <div class="ai-insights">
+                        <div class="ai-insights-header">
+                            <span class="material-symbols-outlined">auto_awesome</span>
+                            AI Intelligence
+                        </div>
+                        
+                        <div class="insight-item">
+                            <div class="insight-icon">💡</div>
+                            <div class="insight-content">
+                                <p>Enrollment peak detected in AI Automation program. Recommend scaling infrastructure capacity.</p>
+                                <div class="insight-label">Recommended Action</div>
+                            </div>
+                        </div>
+
+                        <div class="insight-item">
+                            <div class="insight-icon">🎯</div>
+                            <div class="insight-content">
+                                <p>Students with data analytics background show 34% higher conversion rates.</p>
+                                <div class="insight-label">Pattern Identified</div>
+                            </div>
+                        </div>
+
+                        <div class="insight-item">
+                            <div class="insight-icon">⚡</div>
+                            <div class="insight-content">
+                                <p>Weekend applications increased 22%. Consider marketing push timing adjustments.</p>
+                                <div class="insight-label">Optimization Opportunity</div>
+                            </div>
+                        </div>
+
+                        <div class="chart-container">
+                            <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+                                <defs>
+                                    <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#8B6BFF;stop-opacity:0.3" />
+                                        <stop offset="100%" style="stop-color:#8B6BFF;stop-opacity:0" />
+                                    </linearGradient>
+                                </defs>
+                                <!-- Grid lines -->
+                                <line x1="50" y1="30" x2="50" y2="170" stroke="#c6c6cd" stroke-width="1" opacity="0.3"/>
+                                <line x1="50" y1="170" x2="380" y2="170" stroke="#c6c6cd" stroke-width="1" opacity="0.3"/>
+                                <!-- Fill area -->
+                                <path d="M 50 100 Q 120 60, 190 80 T 330 50 L 330 170 L 50 170 Z" fill="url(#chartGradient)" />
+                                <!-- Line -->
+                                <path d="M 50 100 Q 120 60, 190 80 T 330 50" stroke="#8B6BFF" stroke-width="3" fill="none" stroke-linecap="round"/>
+                                <!-- Data points -->
+                                <circle cx="50" cy="100" r="4" fill="#8B6BFF"/>
+                                <circle cx="190" cy="80" r="4" fill="#8B6BFF"/>
+                                <circle cx="330" cy="50" r="4" fill="#8B6BFF"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="alerts-panel">
+                        <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--on-surface);">Recent Alerts</div>
+                        
+                        <div class="alert-card error">
+                            <span class="material-symbols-outlined" style="font-size: 20px;">error</span>
+                            <div class="alert-content">
+                                <p style="color: var(--error);">Critical: Database backup failure</p>
+                                <div class="alert-time">Just now</div>
+                            </div>
+                        </div>
+
+                        <div class="alert-card warning">
+                            <span class="material-symbols-outlined" style="font-size: 20px; color: #f59e0b;">warning</span>
+                            <div class="alert-content">
+                                <p style="color: #92400e;">5 high-risk applications pending review</p>
+                                <div class="alert-time">2 hours ago</div>
+                            </div>
+                        </div>
+
+                        <div class="alert-card success">
+                            <span class="material-symbols-outlined" style="font-size: 20px; color: #22c55e;">check_circle</span>
+                            <div class="alert-content">
+                                <p style="color: #166534;">Monthly report generated successfully</p>
+                                <div class="alert-time">4 hours ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Applications Table -->
+                <div class="content-row full">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Applicant Name</th>
+                                    <th>Program</th>
+                                    <th>Status</th>
+                                    <th>Applied Date</th>
+                                    <th>Match Score</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Amara Osei</td>
+                                    <td>AI Automation</td>
+                                    <td><span class="status-chip enrolled">Enrolled</span></td>
+                                    <td>June 5, 2026</td>
+                                    <td><div class="score-badge high">92%</div></td>
+                                    <td><button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Luca Bianchi</td>
+                                    <td>AI Software & Web Dev</td>
+                                    <td><span class="status-chip review">Under Review</span></td>
+                                    <td>June 10, 2026</td>
+                                    <td><div class="score-badge high">87%</div></td>
+                                    <td><button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Fatima Al-Rashid</td>
+                                    <td>AI Data Analytics</td>
+                                    <td><span class="status-chip waitlisted">Waitlisted</span></td>
+                                    <td>June 8, 2026</td>
+                                    <td><div class="score-badge medium">68%</div></td>
+                                    <td><button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Chidi Nwosu</td>
+                                    <td>AI Video Creation</td>
+                                    <td><span class="status-chip enrolled">Enrolled</span></td>
+                                    <td>June 3, 2026</td>
+                                    <td><div class="score-badge high">94%</div></td>
+                                    <td><button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Sofia Herrera</td>
+                                    <td>AI for Business</td>
+                                    <td><span class="status-chip rejected">Rejected</span></td>
+                                    <td>June 7, 2026</td>
+                                    <td><div class="score-badge low">32%</div></td>
+                                    <td><button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">View</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Program Performance -->
+                <div class="programs-grid" style="margin-bottom: 0;">
+                    <div class="program-card">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+                            <div class="program-icon" style="background: var(--lavender-light);">
+                                <span class="material-symbols-outlined">smart_toy</span>
+                            </div>
+                            <div class="status-chip enrolled" style="font-size: 11px; background: #dcfce7; color: #166534;">Active</div>
+                        </div>
+                        <div class="program-title">AI Automation</div>
+                        <div class="program-tags">
+                            <span class="tag">12 Weeks</span>
+                            <span class="tag">Beginner</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Enrollment</span>
+                                <span>847 / 1000</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 84.7%;"></div>
+                            </div>
+                        </div>
+                        <div class="program-actions">
+                            <a href="#" onclick="openProgramEdit(event)">Edit</a>
+                            <button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">Analytics</button>
+                        </div>
+                    </div>
+
+                    <div class="program-card">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+                            <div class="program-icon" style="background: var(--lavender-light);">
+                                <span class="material-symbols-outlined">code</span>
+                            </div>
+                            <div class="status-chip enrolled" style="font-size: 11px; background: #dcfce7; color: #166534;">Active</div>
+                        </div>
+                        <div class="program-title">AI Software & Web Dev</div>
+                        <div class="program-tags">
+                            <span class="tag">16 Weeks</span>
+                            <span class="tag">Intermediate</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Enrollment</span>
+                                <span>623 / 800</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 77.9%;"></div>
+                            </div>
+                        </div>
+                        <div class="program-actions">
+                            <a href="#" onclick="openProgramEdit(event)">Edit</a>
+                            <button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">Analytics</button>
+                        </div>
+                    </div>
+
+                    <div class="program-card">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+                            <div class="program-icon" style="background: var(--lavender-light);">
+                                <span class="material-symbols-outlined">videocam</span>
+                            </div>
+                            <div class="status-chip enrolled" style="font-size: 11px; background: #dcfce7; color: #166534;">Active</div>
+                        </div>
+                        <div class="program-title">AI Video Creation</div>
+                        <div class="program-tags">
+                            <span class="tag">10 Weeks</span>
+                            <span class="tag">Beginner</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Enrollment</span>
+                                <span>456 / 600</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 76%;"></div>
+                            </div>
+                        </div>
+                        <div class="program-actions">
+                            <a href="#" onclick="openProgramEdit(event)">Edit</a>
+                            <button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">Analytics</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ANALYTICS SCREEN -->
+        <div id="screen-analytics" class="screen">
+            <div class="analytics-header">
+                <div>
+                    <h2 class="headline-lg">Analytics</h2>
+                    <p style="color: var(--on-surface-variant);">Track performance across your learning ecosystem</p>
+                </div>
+                <div style="display: flex; gap: 12px; align-items: center;">
+                    <div class="date-range-selector">
+                        <button onclick="switchDateRange('7d', this)" class="active">7D</button>
+                        <button onclick="switchDateRange('30d', this)">30D</button>
+                        <button onclick="switchDateRange('90d', this)">90D</button>
+                        <button onclick="switchDateRange('1y', this)">1Y</button>
+                    </div>
+                    <button class="export-btn">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">download</span>
+                        Export
+                    </button>
+                </div>
+            </div>
+
+            <div style="padding: 0 24px;">
+                <!-- KPI Row -->
+                <div class="kpi-grid" style="margin-bottom: 32px;">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="label-md">Revenue</span>
+                            <div class="kpi-icon" style="background: var(--lavender-light); color: var(--secondary);">
+                                <span class="material-symbols-outlined">trending_up</span>
+                            </div>
+                        </div>
+                        <div class="kpi-value">₦4.2M</div>
+                        <div class="kpi-change positive">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">trending_up</span>
+                            <span>+15.3% MoM</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="label-md">Conversion</span>
+                            <div class="kpi-icon" style="background: var(--secondary-fixed); color: var(--on-secondary-fixed);">
+                                <span class="material-symbols-outlined">percent</span>
+                            </div>
+                        </div>
+                        <div class="kpi-value">34%</div>
+                        <div class="kpi-change positive">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">trending_up</span>
+                            <span>+2.1% MoM</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="label-md">Active Students</span>
+                            <div class="kpi-icon" style="background: var(--primary-fixed); color: var(--on-primary-fixed);">
+                                <span class="material-symbols-outlined">people</span>
+                            </div>
+                        </div>
+                        <div class="kpi-value">1,847</div>
+                        <div class="kpi-change positive">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">trending_up</span>
+                            <span>+18% MoM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Chart Area -->
+                <div class="content-row" style="margin-bottom: 32px;">
+                    <div class="card">
+                        <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 20px;">Engagement Over Time</h3>
+                        <div class="chart-container">
+                            <svg viewBox="0 0 500 300" style="width: 100%; height: 100%;">
+                                <defs>
+                                    <linearGradient id="engagementGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#8B6BFF;stop-opacity:0.3" />
+                                        <stop offset="100%" style="stop-color:#8B6BFF;stop-opacity:0.05" />
+                                    </linearGradient>
+                                </defs>
+                                <!-- Grid lines -->
+                                <line x1="50" y1="40" x2="50" y2="240" stroke="#c6c6cd" stroke-width="1" opacity="0.2"/>
+                                <line x1="50" y1="240" x2="480" y2="240" stroke="#c6c6cd" stroke-width="1" opacity="0.2"/>
+                                <!-- Horizontal grid -->
+                                <line x1="50" y1="100" x2="480" y2="100" stroke="#c6c6cd" stroke-width="1" opacity="0.1"/>
+                                <line x1="50" y1="160" x2="480" y2="160" stroke="#c6c6cd" stroke-width="1" opacity="0.1"/>
+                                <!-- Y-axis labels -->
+                                <text x="35" y="245" font-size="12" fill="#76777d" text-anchor="end">0%</text>
+                                <text x="35" y="170" font-size="12" fill="#76777d" text-anchor="end">50%</text>
+                                <text x="35" y="105" font-size="12" fill="#76777d" text-anchor="end">100%</text>
+                                <!-- Fill area -->
+                                <path d="M 50 140 Q 110 80, 170 100 T 290 90 T 410 130 T 480 110 L 480 240 L 50 240 Z" fill="url(#engagementGradient)" />
+                                <!-- Line -->
+                                <path d="M 50 140 Q 110 80, 170 100 T 290 90 T 410 130 T 480 110" stroke="#8B6BFF" stroke-width="3" fill="none" stroke-linecap="round"/>
+                                <!-- Data points -->
+                                <circle cx="50" cy="140" r="4" fill="#8B6BFF"/>
+                                <circle cx="170" cy="100" r="4" fill="#8B6BFF"/>
+                                <circle cx="290" cy="90" r="4" fill="#8B6BFF"/>
+                                <circle cx="410" cy="130" r="4" fill="#8B6BFF"/>
+                                <circle cx="480" cy="110" r="4" fill="#8B6BFF"/>
+                                <!-- X-axis labels -->
+                                <text x="50" y="270" font-size="12" fill="#76777d" text-anchor="middle">Jan</text>
+                                <text x="170" y="270" font-size="12" fill="#76777d" text-anchor="middle">Feb</text>
+                                <text x="290" y="270" font-size="12" fill="#76777d" text-anchor="middle">Mar</text>
+                                <text x="410" y="270" font-size="12" fill="#76777d" text-anchor="middle">Apr</text>
+                                <text x="480" y="270" font-size="12" fill="#76777d" text-anchor="middle">May</text>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 20px;">Top Performing Courses</h3>
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <div style="display: flex; gap: 8px; align-items: center;">
+                                        <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--secondary); color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">1</div>
+                                        <span style="font-size: 13px;">AI Automation</span>
+                                    </div>
+                                    <span style="font-size: 13px; font-weight: 600;">847 enrollments</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <div style="display: flex; gap: 8px; align-items: center;">
+                                        <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--secondary); color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">2</div>
+                                        <span style="font-size: 13px;">AI Software & Web Dev</span>
+                                    </div>
+                                    <span style="font-size: 13px; font-weight: 600;">623 enrollments</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 73.6%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <div style="display: flex; gap: 8px; align-items: center;">
+                                        <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--secondary); color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">3</div>
+                                        <span style="font-size: 13px;">AI Data Analytics</span>
+                                    </div>
+                                    <span style="font-size: 13px; font-weight: 600;">512 enrollments</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60.4%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cohort Funnel -->
+                <div class="card" style="margin-bottom: 32px;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 24px;">Cohort Funnel</h3>
+                    <div style="display: flex; gap: 12px; align-items: flex-end; height: 120px;">
+                        <div style="flex: 1; background: linear-gradient(to right, #6742FA, #8B6BFF); border-radius: 4px; height: 100%; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 12px; color: white; font-size: 12px; font-weight: 600;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 24px; font-weight: 800;">2,400</div>
+                                <div style="font-size: 11px; opacity: 0.9;">Awareness</div>
+                            </div>
+                        </div>
+                        <div style="flex: 0.8; background: linear-gradient(to right, #6742FA, #8B6BFF); border-radius: 4px; height: 80%; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 12px; color: white; font-size: 12px; font-weight: 600;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 20px; font-weight: 800;">1,920</div>
+                                <div style="font-size: 11px; opacity: 0.9;">Interest</div>
+                            </div>
+                        </div>
+                        <div style="flex: 0.6; background: linear-gradient(to right, #6742FA, #8B6BFF); border-radius: 4px; height: 60%; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 12px; color: white; font-size: 12px; font-weight: 600;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 18px; font-weight: 800;">1,440</div>
+                                <div style="font-size: 11px; opacity: 0.9;">Application</div>
+                            </div>
+                        </div>
+                        <div style="flex: 0.5; background: linear-gradient(to right, #6742FA, #8B6BFF); border-radius: 4px; height: 50%; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 12px; color: white; font-size: 12px; font-weight: 600;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 16px; font-weight: 800;">1,008</div>
+                                <div style="font-size: 11px; opacity: 0.9;">Enrolled</div>
+                            </div>
+                        </div>
+                        <div style="flex: 0.4; background: linear-gradient(to right, #6742FA, #8B6BFF); border-radius: 4px; height: 40%; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 12px; color: white; font-size: 12px; font-weight: 600;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 14px; font-weight: 800;">766</div>
+                                <div style="font-size: 11px; opacity: 0.9;">Graduated</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEAD & EVENT TRACKER SCREEN -->
+        <div id="screen-leads" class="screen">
+            <div style="padding: 24px;">
+                <h2 class="headline-lg" style="margin-bottom: 8px;">Lead Tracker</h2>
+                <p style="color: var(--on-surface-variant); margin-bottom: 24px;">Real-time pipeline intelligence</p>
+
+                <div class="filter-chips" style="margin-bottom: 24px;">
+                    <button class="filter-chip active" onclick="filterLeads('all', this)">All</button>
+                    <button class="filter-chip" onclick="filterLeads('new', this)">New</button>
+                    <button class="filter-chip" onclick="filterLeads('contacted', this)">Contacted</button>
+                    <button class="filter-chip" onclick="filterLeads('converted', this)">Converted</button>
+                    <button class="filter-chip" onclick="filterLeads('lost', this)">Lost</button>
+                </div>
+            </div>
+
+            <div class="lead-tracker-layout" style="padding: 0 24px 24px 24px;">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Source</th>
+                                <th>Program Interest</th>
+                                <th>Stage</th>
+                                <th>Last Activity</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Amara Osei</td>
+                                <td>LinkedIn</td>
+                                <td>AI Automation</td>
+                                <td><span class="status-chip" style="background: #dbeafe; color: #0c4a6e;">New</span></td>
+                                <td>Today, 2:30 PM</td>
+                                <td><div class="score-badge high">87%</div></td>
+                            </tr>
+                            <tr>
+                                <td>Luca Bianchi</td>
+                                <td>Referral</td>
+                                <td>AI Software & Web Dev</td>
+                                <td><span class="status-chip" style="background: var(--secondary-fixed); color: var(--on-secondary-fixed);">Contacted</span></td>
+                                <td>Yesterday</td>
+                                <td><div class="score-badge high">92%</div></td>
+                            </tr>
+                            <tr>
+                                <td>Fatima Al-Rashid</td>
+                                <td>Instagram</td>
+                                <td>AI Data Analytics</td>
+                                <td><span class="status-chip" style="background: #dcfce7; color: #166534;">Converted</span></td>
+                                <td>2 days ago</td>
+                                <td><div class="score-badge high">94%</div></td>
+                            </tr>
+                            <tr>
+                                <td>Chidi Nwosu</td>
+                                <td>Google Ads</td>
+                                <td>AI Video Creation</td>
+                                <td><span class="status-chip" style="background: #f5f5f5; color: #666;">Lost</span></td>
+                                <td>1 week ago</td>
+                                <td><div class="score-badge low">32%</div></td>
+                            </tr>
+                            <tr>
+                                <td>Sofia Herrera</td>
+                                <td>WhatsApp</td>
+                                <td>AI for Business</td>
+                                <td><span class="status-chip" style="background: #dbeafe; color: #0c4a6e;">New</span></td>
+                                <td>Today, 10:15 AM</td>
+                                <td><div class="score-badge medium">71%</div></td>
+                            </tr>
+                            <tr>
+                                <td>James Okafor</td>
+                                <td>Event</td>
+                                <td>AI Automation</td>
+                                <td><span class="status-chip" style="background: var(--secondary-fixed); color: var(--on-secondary-fixed);">Contacted</span></td>
+                                <td>3 hours ago</td>
+                                <td><div class="score-badge high">89%</div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="live-feed">
+                    <div class="live-feed-header">
+                        <div class="pulse-dot"></div>
+                        Live Intelligence Feed
+                    </div>
+
+                    <div class="feed-item">
+                        <div class="feed-icon">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">person_add</span>
+                        </div>
+                        <div class="feed-content">
+                            <div class="feed-text">Amara Osei opened the AI Bootcamp brochure</div>
+                            <div class="feed-time">2 mins ago</div>
+                            <div class="feed-match">87% match</div>
+                        </div>
+                    </div>
+
+                    <div class="feed-item">
+                        <div class="feed-icon">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">email</span>
+                        </div>
+                        <div class="feed-content">
+                            <div class="feed-text">Email sent to Luca Bianchi - Welcome message</div>
+                            <div class="feed-time">5 mins ago</div>
+                            <div class="feed-match">92% match</div>
+                        </div>
+                    </div>
+
+                    <div class="feed-item">
+                        <div class="feed-icon">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">event</span>
+                        </div>
+                        <div class="feed-content">
+                            <div class="feed-text">Fatima Al-Rashid registered for webinar</div>
+                            <div class="feed-time">15 mins ago</div>
+                            <div class="feed-match">94% match</div>
+                        </div>
+                    </div>
+
+                    <div class="feed-item">
+                        <div class="feed-icon">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span>
+                        </div>
+                        <div class="feed-content">
+                            <div class="feed-text">Sofia Herrera completed assessment</div>
+                            <div class="feed-time">28 mins ago</div>
+                            <div class="feed-match">71% match</div>
+                        </div>
+                    </div>
+
+                    <div class="feed-item">
+                        <div class="feed-icon">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">call</span>
+                        </div>
+                        <div class="feed-content">
+                            <div class="feed-text">Phone call scheduled with James Okafor</div>
+                            <div class="feed-time">1 hour ago</div>
+                            <div class="feed-match">89% match</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROGRAM MANAGEMENT SCREEN -->
+        <div id="screen-programs" class="screen">
+            <div style="padding: 24px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h2 class="headline-lg">Programs</h2>
+                    <p style="color: var(--on-surface-variant);">Manage your AI curriculum portfolio</p>
+                </div>
+                <button class="btn-primary">
+                    <span class="material-symbols-outlined">add</span>
+                    Add Program
+                </button>
+            </div>
+
+            <div style="padding: 0 24px 32px 24px;">
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px;">
+                            <div class="program-icon" style="background: var(--lavender-light); width: 56px; height: 56px; font-size: 32px;">
+                                <span class="material-symbols-outlined">smart_toy</span>
+                            </div>
+                        </div>
+                        <div class="program-title">AI Automation</div>
+                        <div class="program-tags">
+                            <span class="tag">12 Weeks</span>
+                            <span class="tag">Beginner</span>
+                        </div>
+                        <div class="progress-container" style="margin-top: 16px;">
+                            <div class="progress-label">
+                                <span>847 / 1000 enrolled</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 84.7%;"></div>
+                            </div>
+                        </div>
+                        <div class="program-status" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--outline-variant);">
+                            <div class="status-chip enrolled" style="font-size: 11px;">Active</div>
+                        </div>
+                        <div class="program-actions" style="border-top: none; margin-top: 12px;">
+                            <a href="#" onclick="openProgramEdit(event)">Edit</a>
+                            <button class="btn-secondary" style="padding: 6px 12px; font-size: 12px; flex: 1;">View Analytics</button>
+                        </div>
+                    </div>
+
+                    <div class="program-card">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px;">
+                            <div class="program-icon" style="background: var(--lavender-light); width: 56px; height: 56px; font-size: 32px;">
+                                <span class="material-symbols-outlined">code</span>
+                            </div>
+                        </div>
+                        <div class="program-title">AI Software & Web Dev</div>
+                        <div class="program-tags">
+                            <span class="tag">16 Weeks</span>
+                            <span class="tag">Intermediate</span>
+                        </div>
+                        <div class="progress-container" style="margin-top: 16px;">
+                            <div class="progress-label">
+                                <span>623 / 800 enrolled</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 77.9%;"></div>
+                            </div>
+                        </div>
+                        <div class="program-status" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--outline-variant);">
+                            <div class="status-chip enrolled" style="font-size: 11px;">Active</div>
+                        </div>
+                        <div class="program-actions" style="border-top: none; margin-top: 12px;">
+                            <a href="#" onclick="openProgramEdit(event)">Edit</a>
+                            <button class="btn-secondary" style="padding: 6px 12px; font-size: 12px; flex: 1;">View Analytics</button>
+                        </div>
+                    </div>
+
+                    <div class="program-card">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px;">
+                            <div class="program-icon" style="background: var(--lavender-light); width: 56px; height: 56px; font-size: 32px;">
+                                <span class="material-symbols-outlined">videocam</span>
+                            </div>
+                        </div>
+                        <div class="program-title">AI Video Creation</div>
+                        <div class="program-tags">
+                            <span class="tag">10 Weeks</span>
+                            <span class="tag">Beginner</span>
+                        </div>
+                        <div class="progress-container" style="margin-top: 16px;">
+                            <div class="progress-label">
+                                <span>456 / 600 enrolled</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 76%;"></div>
+                            </div>
+                        </div>
+                        <div class="program-status" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--outline-variant);">
+                            <div class="status-chip enrolled" style="font-size: 11px;">Active</div>
+                        </div>
+                        <div class="program-actions" style="border-top: none; margin-top: 12px;">
+                            <a href="#" onclick="openProgramEdit(event)">Edit</a>
+                            <button class="btn-secondary" style="padding: 6px 12px; font-size: 12px; flex: 1;">View Analytics</button>
+                        </div>
+                    </div>
+
+                    <div class="program-card">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px;">
+                            <div class="program-icon" style="background: var(--lavender-light); width: 56px; height: 56px; font-size: 32px;">
+                                <span class="material-symbols-outlined">bar_chart</span>
+                            </div>
+                        </div>
+                        <div class="program-title">AI Data Analytics</div>
+                        <div class="program-tags">
+                            <span class="tag">14 Weeks</span>
+                            <span class="tag">Intermediate</span>
+                        </div>
+                        <div class="progress-container" style="margin-top: 16px;">
+                            <div class="progress-label">
+                                <span>512 / 700 enrolled</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 73.1%;"></div>
+                            </div>
+                        </div>
+                        <div class="program-status" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--outline-variant);">
+                            <div class="status-chip enrolled" style="font-size: 11px;">Active</div>
+                        </div>
+                        <div class="program-actions" style="border-top: none; margin-top: 12px;">
+                            <a href="#" onclick="openProgramEdit(event)">Edit</a>
+                            <button class="btn-secondary" style="padding: 6px 12px; font-size: 12px; flex: 1;">View Analytics</button>
+                        </div>
+                    </div>
+
+                    <div class="program-card">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px;">
+                            <div class="program-icon" style="background: var(--lavender-light); width: 56px; height: 56px; font-size: 32px;">
+                                <span class="material-symbols-outlined">business_center</span>
+                            </div>
+                        </div>
+                        <div class="program-title">AI for Business</div>
+                        <div class="program-tags">
+                            <span class="tag">8 Weeks</span>
+                            <span class="tag">Beginner</span>
+                        </div>
+                        <div class="progress-container" style="margin-top: 16px;">
+                            <div class="progress-label">
+                                <span>289 / 500 enrolled</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 57.8%;"></div>
+                            </div>
+                        </div>
+                        <div class="program-status" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--outline-variant);">
+                            <div class="status-chip enrolled" style="font-size: 11px;">Active</div>
+                        </div>
+                        <div class="program-actions" style="border-top: none; margin-top: 12px;">
+                            <a href="#" onclick="openProgramEdit(event)">Edit</a>
+                            <button class="btn-secondary" style="padding: 6px 12px; font-size: 12px; flex: 1;">View Analytics</button>
+                        </div>
+                    </div>
+
+                    <div class="program-card">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px;">
+                            <div class="program-icon" style="background: var(--lavender-light); width: 56px; height: 56px; font-size: 32px;">
+                                <span class="material-symbols-outlined">manage_accounts</span>
+                            </div>
+                        </div>
+                        <div class="program-title">AI for HR</div>
+                        <div class="program-tags">
+                            <span class="tag">10 Weeks</span>
+                            <span class="tag">Advanced</span>
+                        </div>
+                        <div class="progress-container" style="margin-top: 16px;">
+                            <div class="progress-label">
+                                <span>178 / 400 enrolled</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 44.5%;"></div>
+                            </div>
+                        </div>
+                        <div class="program-status" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--outline-variant);">
+                            <div class="status-chip enrolled" style="font-size: 11px;">Active</div>
+                        </div>
+                        <div class="program-actions" style="border-top: none; margin-top: 12px;">
+                            <a href="#" onclick="openProgramEdit(event)">Edit</a>
+                            <button class="btn-secondary" style="padding: 6px 12px; font-size: 12px; flex: 1;">View Analytics</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SETTINGS SCREEN -->
+        <div id="screen-settings" class="screen">
+            <div class="settings-content">
+                <div class="settings-header">
+                    <h2>Settings</h2>
+                    <p style="color: var(--on-surface-variant);">Configure your institution's intelligence suite</p>
+                </div>
+
+                <!-- Institution Profile & Notifications Row -->
+                <div class="settings-grid">
+                    <div class="settings-section">
+                        <h3>Institution Profile</h3>
+                        
+                        <div class="form-field">
+                            <label>Institution Name</label>
+                            <input type="text" placeholder="Your institution name" value="EduMatch Institution">
+                        </div>
+
+                        <div class="form-field">
+                            <label>Contact Email</label>
+                            <input type="email" placeholder="contact@institution.edu" value="admin@edumatch.edu">
+                        </div>
+
+                        <div class="form-field">
+                            <label>Country/Region</label>
+                            <select>
+                                <option>Nigeria</option>
+                                <option>Ghana</option>
+                                <option>Kenya</option>
+                                <option>South Africa</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label>Website URL</label>
+                            <input type="text" placeholder="https://yourwebsite.com" value="https://edumatch.edu">
+                        </div>
+
+                        <div class="form-field">
+                            <label>Upload Logo</label>
+                            <input type="text" placeholder="Choose file..." style="cursor: pointer;">
+                        </div>
+
+                        <button class="btn-primary" style="width: 100%; margin-top: 16px;">Save Changes</button>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Notifications</h3>
+                        
+                        <div class="toggle-switch">
+                            <div class="switch on" onclick="toggleSwitch(this)"></div>
+                            <span class="toggle-label">New Lead Alerts</span>
+                        </div>
+
+                        <div class="toggle-switch">
+                            <div class="switch on" onclick="toggleSwitch(this)"></div>
+                            <span class="toggle-label">Weekly Analytics Report</span>
+                        </div>
+
+                        <div class="toggle-switch">
+                            <div class="switch" onclick="toggleSwitch(this)"></div>
+                            <span class="toggle-label">AI Recommendations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API Integrations (Glassmorphism) -->
+                <div class="glass-card" style="margin-bottom: 32px;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 24px; display: flex; align-items: center; gap: 8px;">
+                        <span class="material-symbols-outlined">integration_instructions</span>
+                        API Integrations
+                    </h3>
+                    
+                    <div class="integrations-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="integration-card">
+                            <div class="integration-icon" style="background: var(--lavender-light);">
+                                <span class="material-symbols-outlined" style="font-size: 28px;">import_contacts</span>
+                            </div>
+                            <div class="integration-name">LMS Integration</div>
+                            <div class="integration-status connected">Connected</div>
+                            <button class="btn-secondary" style="padding: 8px 12px; font-size: 12px; width: 100%;">Configure</button>
+                        </div>
+
+                        <div class="integration-card">
+                            <div class="integration-icon" style="background: var(--lavender-light);">
+                                <span class="material-symbols-outlined" style="font-size: 28px;">chat</span>
+                            </div>
+                            <div class="integration-name">WhatsApp</div>
+                            <div class="integration-status connected">Connected</div>
+                            <button class="btn-secondary" style="padding: 8px 12px; font-size: 12px; width: 100%;">Configure</button>
+                        </div>
+
+                        <div class="integration-card">
+                            <div class="integration-icon" style="background: var(--lavender-light);">
+                                <span class="material-symbols-outlined" style="font-size: 28px;">workspaces</span>
+                            </div>
+                            <div class="integration-name">Salesforce</div>
+                            <div class="integration-status disconnected">Disconnected</div>
+                            <button class="btn-primary" style="padding: 8px 12px; font-size: 12px; width: 100%;">Connect</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team & Permissions -->
+                <div class="settings-section" style="margin-bottom: 32px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h3>Team & Permissions</h3>
+                        <button class="btn-primary" style="padding: 8px 16px; font-size: 12px;">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">person_add</span>
+                            Invite Member
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Role</th>
+                                    <th>Last Active</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Admin User</td>
+                                    <td><span class="status-chip" style="background: var(--lavender-light); color: var(--secondary); font-size: 12px;">Admin</span></td>
+                                    <td>Today, 2:30 PM</td>
+                                    <td><button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">Edit</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Analytics Lead</td>
+                                    <td><span class="status-chip" style="background: var(--secondary-fixed); color: var(--on-secondary-fixed); font-size: 12px;">Analyst</span></td>
+                                    <td>Yesterday, 5:15 PM</td>
+                                    <td><button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">Edit</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Program Manager</td>
+                                    <td><span class="status-chip" style="background: var(--secondary-fixed); color: var(--on-secondary-fixed); font-size: 12px;">Manager</span></td>
+                                    <td>2 days ago</td>
+                                    <td><button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">Edit</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Viewer Account</td>
+                                    <td><span class="status-chip" style="background: #f3f3f3; color: #999; font-size: 12px;">Viewer</span></td>
+                                    <td>1 week ago</td>
+                                    <td><button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">Edit</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Program Modal -->
+    <div id="programModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Program</h3>
+                <button class="modal-close" onclick="closeProgramEdit()">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="form-field">
+                <label>Program Name</label>
+                <input type="text" placeholder="Program name" value="AI Automation">
+            </div>
+
+            <div class="form-field">
+                <label>Duration (weeks)</label>
+                <input type="text" placeholder="12" value="12">
+            </div>
+
+            <div class="form-field">
+                <label>Level</label>
+                <select>
+                    <option selected>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label>Max Enrollment</label>
+                <input type="text" placeholder="1000" value="1000">
+            </div>
+
+            <div class="form-field">
+                <label>Program Description</label>
+                <textarea placeholder="Describe your program..." rows="4">Learn AI automation fundamentals and practical applications.</textarea>
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-top: 24px;">
+                <button class="btn-primary" style="flex: 1;">Save Changes</button>
+                <button class="btn-secondary" style="flex: 1;" onclick="closeProgramEdit()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentScreen = 'login';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDate();
+        });
+
+        // Update date display
+        function updateDate() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date().toLocaleDateString('en-US', options);
+            const dateElement = document.getElementById('todayDate');
+            if (dateElement) {
+                dateElement.textContent = today;
+            }
+        }
+
+        // Switch screens
+        function switchScreen(screenName, event) {
+            if (event) event.preventDefault();
+            
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+
+            // Show selected screen
+            document.getElementById('screen-' + screenName).classList.add('active');
+            currentScreen = screenName;
+
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`[data-screen="${screenName}"]`).classList.add('active');
+
+            // Close mobile sidebar
+            closeMobileSidebar();
+        }
+
+        // Navigate to dashboard from login
+        function navigateToDashboard() {
+            switchScreen('dashboard', null);
+        }
+
+        // Toggle password visibility
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const button = event.target.closest('button');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                button.innerHTML = '<span class="material-symbols-outlined">visibility_off</span>';
+            } else {
+                passwordInput.type = 'password';
+                button.innerHTML = '<span class="material-symbols-outlined">visibility</span>';
+            }
+        }
+
+        // Toggle error state
+        function toggleErrorState(event) {
+            event.preventDefault();
+            const errorBanner = document.getElementById('errorBanner');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+
+            errorBanner.classList.toggle('show');
+            emailInput.classList.toggle('error');
+            passwordInput.classList.toggle('error');
+        }
+
+        // Mobile sidebar toggle
+        function toggleMobileSidebar() {
+            document.getElementById('sidebar').classList.toggle('mobile-visible');
+        }
+
+        function closeMobileSidebar() {
+            document.getElementById('sidebar').classList.remove('mobile-visible');
+        }
+
+        // Switch date range
+        function switchDateRange(range, element) {
+            document.querySelectorAll('.date-range-selector button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+
+        // Filter leads
+        function filterLeads(type, element) {
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+
+        // Toggle switch
+        function toggleSwitch(element) {
+            element.classList.toggle('on');
+        }
+
+        // Program edit modal
+        function openProgramEdit(event) {
+            event.preventDefault();
+            document.getElementById('programModal').classList.add('active');
+        }
+
+        function closeProgramEdit() {
+            document.getElementById('programModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('programModal');
+            if (event.target === modal) {
+                closeProgramEdit();
+            }
+        });
+    </script>
+</body>
+</html>
