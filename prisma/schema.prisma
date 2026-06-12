@@ -1,0 +1,87 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  assessments assessments[]
+  reports     recommendation_reports[]
+}
+
+model assessments {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+
+  responses assessment_responses[]
+}
+
+model assessment_responses {
+  id           String      @id @default(uuid())
+  assessmentId String
+  assessment   assessments @relation(fields: [assessmentId], references: [id])
+  questionIdx  Int
+  questionText String
+  answer       String
+}
+
+model careers {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String
+  createdAt   DateTime @default(now())
+
+  weights  career_weights[]
+  mappings career_program_mappings[]
+}
+
+model career_weights {
+  id          String  @id @default(uuid())
+  careerId    String
+  career      careers @relation(fields: [careerId], references: [id])
+  category    String  // "interest", "skill", "goal", "preference"
+  key         String  // e.g. "Data & Analytics", "Programming", "Better Income", "Online"
+  weightValue Int     // Points added if matched
+}
+
+model programs {
+  id             String   @id @default(uuid())
+  name           String   @unique
+  description    String
+  duration       String
+  deliveryMode   String   // "Online" or "Hybrid"
+  tuition        String
+  employmentRate String?
+  createdAt      DateTime @default(now())
+
+  mappings career_program_mappings[]
+}
+
+model career_program_mappings {
+  id        String   @id @default(uuid())
+  careerId  String
+  career    careers  @relation(fields: [careerId], references: [id])
+  programId String
+  program   programs @relation(fields: [programId], references: [id])
+}
+
+model recommendation_reports {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  summary   String   // JSON representing student profile summary
+  careers   String   // JSON representing career matches and scores
+  programs  String   // JSON representing program recommendations
+  createdAt DateTime @default(now())
+}
